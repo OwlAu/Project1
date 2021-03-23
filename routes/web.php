@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SocietyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,18 @@ Route::get('/society', function () {
 Route::get('/event', function () {
     return view('event');
 });
+
+/* Moderator's Setting Page */
+/* Route::get('/setting',function(){
+    return view('setting');
+}); */
+Route::get("/setting",[SocietyController::class,'index']);
+
+/* Moderator's Setting/createSocietyProfile Page */
+Route::get('/setting/create_society_profile',function(){
+    return view('createSocietyProfile');
+});
+Route::post('/setting/create_society_profile',[SocietyController::class,'store'])->name('/setting/create_society_profile');
 
 Auth::routes();
 

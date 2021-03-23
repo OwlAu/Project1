@@ -15,7 +15,6 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -33,6 +32,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @can('isModerator')
+                        <li class="nav-item">
+                            <a class ='nav-link' href="society">Society</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class ='nav-link' href="event">Event</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class ='nav-link' href="forum">Forum</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class ='nav-link' href="profile">Profile</a>
+                        </li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -152,7 +165,7 @@
                                 </li>
                                 {{-- Profile Button --}}
                                 <li class="nav-item">
-                                    <a class ='nav-link' href="#">Profile</a>
+                                    <a class ='nav-link' href="/setting">Settings</a>
                                 </li>
                                 @endcan
 
