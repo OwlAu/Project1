@@ -79,6 +79,7 @@ class SocietyController extends Controller
 
     }
 
+    
    
     
 

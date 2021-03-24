@@ -125,10 +125,10 @@
                                     </a>
     
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href=#">
+                                        <a class="dropdown-item" href='/create_new_announcement'>
                                            New Announcement
                                         </a>
-                                        <a class="dropdown-item" href=#">
+                                        <a class="dropdown-item" href='/announcement_list'>
                                             Announcement List
                                          </a>
                                     </div>

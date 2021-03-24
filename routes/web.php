@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocietyController;
+use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,16 @@ Route::post('/setting/create_society_profile',[SocietyController::class,'store']
 /* Moderator's Setting/updateSocietyProfile Page */
 Route::get("setting/updateSociety/{id}",[SocietyController::class,'updateView']);
 Route::put('setting/updateSociety/{id}',[SocietyController::class,'update']);
+
+/* Moderator's Create new Announcement */
+Route::get('/create_new_announcement',function(){
+    return view('createNewAnnouncement');
+});
+Route::post('/create_new_announcement',[AnnouncementController::class,'store'])->name('/create_new_announcement');
+
+/* Moderator's Announcement List */
+Route::get("/announcement_list",[AnnouncementController::class,'display']);
+
 
 Auth::routes();
 
