@@ -43,13 +43,18 @@ Route::get('/event', function () {
 /* Route::get('/setting',function(){
     return view('setting');
 }); */
-Route::get("/setting",[SocietyController::class,'index']);
+Route::get("/setting",[SocietyController::class,'display']);
+
 
 /* Moderator's Setting/createSocietyProfile Page */
 Route::get('/setting/create_society_profile',function(){
     return view('createSocietyProfile');
 });
 Route::post('/setting/create_society_profile',[SocietyController::class,'store'])->name('/setting/create_society_profile');
+
+/* Moderator's Setting/updateSocietyProfile Page */
+Route::get("setting/updateSociety/{id}",[SocietyController::class,'updateView']);
+Route::put('setting/updateSociety/{id}',[SocietyController::class,'update']);
 
 Auth::routes();
 
