@@ -36,8 +36,8 @@ class SocietyController extends Controller
 
         $societyProfile->save();
 
-        //return view('setting')->with('setting',$societyProfile);
-        return view('setting');
+        return view('setting')->with('societyInfo',$societyProfile);
+        
 
     } 
 
@@ -80,10 +80,9 @@ class SocietyController extends Controller
 
     }
 
-    
-   
-    
+    public function userviewSocietyPage(){
+        $societies = Society::all();
+        return view('society')->with('societies',$societies);
+    }
 
-
-   
 }

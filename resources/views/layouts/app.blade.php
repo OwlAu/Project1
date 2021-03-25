@@ -89,7 +89,7 @@
                                     </a>
     
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href=#">
+                                        <a class="dropdown-item" href='/pending_member_list'>
                                            Pending Member
                                         </a>
                                         <a class="dropdown-item" href=#">

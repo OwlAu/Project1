@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AnnouncementController;
-
+use App\Http\Controllers\SocietyMemberController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,9 +32,8 @@ Route::get('/forum', function () {
 });
 
 /* Society Page */
-Route::get('/society', function () {
-    return view('society');
-});
+Route::get("/society",[SocietyController::class,'userviewSocietyPage']);
+
 
 /* Event Page */
 Route::get('/event', function () {
@@ -83,6 +82,8 @@ Route::post('/create_new_event',[EventController::class,'store'])->name('/create
 /* Moderator's Event List */
 Route::get("/event_list",[EventController::class,'display']);
 
+/* Moderator's Pending Member List */
+Route::get('/pending_member_list',[SocietyMemberController::class,'displayPendingList']);
 
 Auth::routes();
 

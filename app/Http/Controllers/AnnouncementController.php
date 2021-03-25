@@ -6,6 +6,7 @@ use App\Models\Society;
 use Illuminate\Http\Request;
 use App\Models\Announcement;
 use Auth;
+use DB;
 
 class AnnouncementController extends Controller
 {
@@ -43,18 +44,21 @@ class AnnouncementController extends Controller
 
         $newAnnouncement->save();
 
+        $announcements = DB::table('announcements')->where('club_id', '=', $society_id)->get();
+
         //return view('setting')->with('setting',$newAnnouncement);
-        return redirect('setting');
+        return view('announcementList')->with('announcements',$announcements);
     } 
 
     //Display all the announcment that related to this society.
     public function display(){
-        /* $user_id = Auth::user()->studentId;
+        $user_id = Auth::user()->studentId;
         $societies = Society::all();
         $societyInfo = $societies->where('user_id',$user_id)->first();
-        $society_id = $societyInfo->id; */
+        $society_id = $societyInfo->id;
 
-        $announcements= Announcement::all();
+        $announcements = DB::table('announcements')->where('club_id', '=', $society_id) ->get();
+        //$announcements= Announcement::all();
 
         return view('announcementList')->with('announcements',$announcements);
     }
