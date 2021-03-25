@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Facade\DB;
 use App\Models\Society;
 use Auth;
 
@@ -80,8 +81,10 @@ class SocietyController extends Controller
 
     }
 
+    //Extract society info for user to view.(/Society)
     public function userviewSocietyPage(){
-        $societies = Society::all();
+        //$societies = Society::all();
+        $societies = Society::paginate(8);
         return view('society')->with('societies',$societies);
     }
 

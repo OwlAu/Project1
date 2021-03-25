@@ -4,23 +4,28 @@
     .card {
         display: flex;
         flex-wrap: wrap;
-        margin:10px;
+        margin: 10px;
     }
 
     .flex-container {
         flex-direction: row;
         display: flex;
         flex-wrap: wrap;
-        margin-left:30px;
-        margin-right:30px;
+        margin-left: 30px;
+        margin-right: 30px;
         justify-content: center;
     }
-    .societyContainer{
-        margin-left:30px;
-        margin-right:30px;
-        padding:0px;
+
+    .societyContainer {
+        margin-left: 30px;
+        margin-right: 30px;
+        padding: 0px;
         justify-content: center;
         position: absolute;
+    }
+
+    .w-5 {
+        display: none
     }
 </style>
 @section('content')
@@ -32,11 +37,19 @@
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="{{asset('uploads/societyLogo/'.$society->logo)}}" alt="Card image cap">
                 <div class="card-body">
-                    <p class="card-text">{{$society->name}}</p>
+                    <p style='float:left;' class="card-text">{{$society->name}}</p>
+                    <a style='float:right;' href='/society/{{$society->id}}'>Learn More></a>
                 </div>
             </div>
             @endforeach
         </div>
-    </div> 
+    </div>
+    <div class="d-flex" >
+        <div class="mx-auto">
+            {{$societies->links('pagination::bootstrap-4')}}
+        </div>
+    </div>
 </div>
+
+
 @endsection
