@@ -110,10 +110,10 @@
                                         <a class="dropdown-item" href=#">
                                            Pending Event
                                         </a>
-                                        <a class="dropdown-item" href=#">
+                                        <a class="dropdown-item" href='/create_new_event'>
                                             New Event
                                          </a>
-                                         <a class="dropdown-item" href=#">
+                                         <a class="dropdown-item" href='/event_list'>
                                             Event List
                                          </a>
                                     </div>

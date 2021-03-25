@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocietyController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\AnnouncementController;
 
 /*
@@ -65,6 +66,22 @@ Route::post('/create_new_announcement',[AnnouncementController::class,'store'])-
 
 /* Moderator's Announcement List */
 Route::get("/announcement_list",[AnnouncementController::class,'display']);
+
+/* Moderator's Update Announcement Page */
+Route::get('/update_announcement/{id}',[AnnouncementController::class,'updateView']);
+Route::put('/update_announcement/{id}',[AnnouncementController::class,'update']);
+
+/* Moderator's Delete Announcement List */
+Route::get('/delete_announcement/{id}',[AnnouncementController::class,'delete']);
+
+/* Moderator's Create New Event */
+Route::get('/create_new_event',function(){
+    return view('createNewEvent');
+});
+Route::post('/create_new_event',[EventController::class,'store'])->name('/create_new_event');
+
+/* Moderator's Event List */
+Route::get("/event_list",[EventController::class,'display']);
 
 
 Auth::routes();

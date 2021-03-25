@@ -56,6 +56,7 @@ class SocietyController extends Controller
         return view('societyUpdateForm')->with('societyProfile',$societyProfile);
     }
 
+    //Update society profile info
     public function update(Request $request,$id){
         $societyProfile = Society::find($id);
 

@@ -31,8 +31,8 @@
                 <td> <img width=100px height=100px src='{{asset('uploads/announcementImage/'.$announcement->image)}}' alt='image'>
                 </td>
                 <td>
-                    <a href='' type="button" class="btn btn-warning" >Edit</a>
-                    <a href='' type="button" class="btn btn-danger" >Delete</a>
+                    <a href='/update_announcement/{{$announcement->id}}' type="button" class="btn btn-warning" >Edit</a>
+                    <a href='/delete_announcement/{{$announcement->id}}' type="button" class="btn btn-danger" >Delete</a>
                 </td>
             </tr>
             @endforeach

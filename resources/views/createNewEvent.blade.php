@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create New Announcement') }}</div>
+                <div class="card-header">{{ __('Create New Event') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -23,7 +23,7 @@
                     @endif
 
                     <div class='container'>
-                        <form action='{{route('/create_new_announcement')}}' method='POST' enctype="multipart/form-data">
+                        <form action='{{route('/create_new_event')}}' method='POST' enctype="multipart/form-data">
                             @csrf
                             <div class='form-group'>
                                 <label>Title:</label>
@@ -46,8 +46,33 @@
                             </div>
   
                             <div class='form-group'>
+                                <label>Event Fees(RM):</label>
+                                <div>
+                                    <input id="eventFees" type="title" class="form-control @error('eventFees') is-invalid @enderror" name="eventFees" value="{{ old('eventFees') }}" required autocomplete="eventFees" autofocus>
+    
+                                    @error('eventFees')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <label>Event Registration Availability:</label>
+                                <select class="form-select" name='eventRegistration' aria-label="Default select example">
+                                    <option value="0">Close for registration</option>
+                                    <option value="1">Open for registration</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="example-date-input" class="col-form-label">Event Date</label>
+                                <div>
+                                  <input class="form-control" type="date" name='eventDate' id="example-date-input">
+                                </div>
+                              </div>
+                            <div class='form-group'>
                                 <label>Image:</label>
-                                <div class="input-group mb-3">
+                                <div class="input-group">
                                     <input type="file" name='image' class="form-control p-1" id="inputGroupFile01">
                                 </div>
                                 <span style='color:red'>@error('image'){{$message}}@enderror</span>

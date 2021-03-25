@@ -17,7 +17,10 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->mediumText('eventImg');
+            $table->string('eventFees');
+            $table->Boolean('eventRegistration');
+            $table->date('eventDate');
+            $table->mediumText('image');
             $table->string('club_id');
             $table->timestamps();
         });
