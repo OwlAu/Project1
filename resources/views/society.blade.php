@@ -31,7 +31,8 @@
 @section('content')
 <div class="societyContainer">
     <div class="col-md-15">
-        <h3>Pick your favourite society!</h3>
+        <h3>Pick your favourite society! There are  {{$societies->count()}} for you to pick from!</h3>
+    
         <div class='flex-container'>
             @foreach($societies as $society)
             <div class="card" style="width: 18rem;">

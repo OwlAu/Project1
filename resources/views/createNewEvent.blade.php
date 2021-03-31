@@ -28,12 +28,14 @@
                             <div class='form-group'>
                                 <label>Title:</label>
                                 <div>
-                                    <input id="title" type="title" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
-    
+                                    <input id="title" type="title"
+                                        class="form-control @error('title') is-invalid @enderror" name="title"
+                                        value="{{ old('title') }}" required autocomplete="title" autofocus>
+
                                     @error('title')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
@@ -44,22 +46,25 @@
                                 </textarea>
                                 <span style='color:red'>@error('description'){{$message}}@enderror</span>
                             </div>
-  
+
                             <div class='form-group'>
                                 <label>Event Fees(RM):</label>
                                 <div>
-                                    <input id="eventFees" type="title" class="form-control @error('eventFees') is-invalid @enderror" name="eventFees" value="{{ old('eventFees') }}" required autocomplete="eventFees" autofocus>
-    
+                                    <input id="eventFees" type="title"
+                                        class="form-control @error('eventFees') is-invalid @enderror" name="eventFees"
+                                        value="{{ old('eventFees') }}" required autocomplete="eventFees" autofocus>
+
                                     @error('eventFees')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
                             <div class='form-group'>
                                 <label>Event Registration Availability:</label>
-                                <select class="form-select" name='eventRegistration' aria-label="Default select example">
+                                <select class="form-select" name='eventRegistration'
+                                    aria-label="Default select example">
                                     <option value="0">Close for registration</option>
                                     <option value="1">Open for registration</option>
                                 </select>
@@ -67,9 +72,9 @@
                             <div class="form-group">
                                 <label for="example-date-input" class="col-form-label">Event Date</label>
                                 <div>
-                                  <input class="form-control" type="date" name='eventDate' id="example-date-input">
+                                    <input class="form-control" type="date" name='eventDate' id="example-date-input">
                                 </div>
-                              </div>
+                            </div>
                             <div class='form-group'>
                                 <label>Image:</label>
                                 <div class="input-group">

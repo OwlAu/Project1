@@ -5,6 +5,8 @@ use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\SocietyMemberController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,9 +24,8 @@ Route::get('/', function () {
 });
 
 /* Profile Page */
-Route::get('/profile', function () {
-    return view('profile');
-});
+Route::get('/profile', [UserController::class,'show']);
+Route::put('/update_user_profile/{id}',[UserController::class,'update']);
 
 /* Forum Page */
 Route::get('/forum', function () {
@@ -32,19 +33,18 @@ Route::get('/forum', function () {
 });
 
 /* Society Page */
-Route::get("/society",[SocietyController::class,'userviewSocietyPage']);
+Route::get("society",[SocietyController::class,'userviewSocietyPage']);
+Route::get("/society/{id}",[SocietyController::class,'userviewSocietyDetailPage']);
 
 
 /* Event Page */
-Route::get('/event', function () {
-    return view('event');
-});
+Route::get("/event",[EventController::class,'userviewEventPage']);
 
 /* Moderator's Setting Page */
 /* Route::get('/setting',function(){
     return view('setting');
 }); */
-Route::get("/setting",[SocietyController::class,'display']);
+Route::get("/setting",[SocietyController::class,'show']);
 
 
 /* Moderator's Setting/createSocietyProfile Page */
@@ -83,8 +83,15 @@ Route::post('/create_new_event',[EventController::class,'store'])->name('/create
 Route::get("/event_list",[EventController::class,'display']);
 
 /* Moderator's Pending Member List */
-Route::get('/pending_member_list',[SocietyMemberController::class,'displayPendingList']);
+Route::get('/pending_member_list',[SocietyMemberController::class,'displayPendingUser']);
+
+/* User join a society */
+Route::get('/society/{id}/register_society',[SocietyMemberController::class,'index']);
+Route::post('/society/{id}/register_society',[SocietyMemberController::class,'store'])->name('/society/{id}/register_society');
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+

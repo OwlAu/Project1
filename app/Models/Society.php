@@ -18,7 +18,7 @@ class Society extends Model
     'societyFees',
     'user_id'];
 
-    public function user(){
+    public function users(){
         return $this->belongsTo(User::class);
     }
 

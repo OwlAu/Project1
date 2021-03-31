@@ -57,4 +57,11 @@ class EventController extends Controller
 
         return view('eventList')->with('events',$events);
     }
+
+    //Extract society info for user to view.(/event)
+    public function userviewEventPage(){
+        //$societies = Society::all();
+        $events = Event::paginate(8);
+        return view('event')->with('events',$events);
+    }
 }

@@ -5,17 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Facade\DB;
 use App\Models\Society;
+use Intervention\Image\Facade\Image;
 use Auth;
+use App\Models\Event;
 
 class SocietyController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
         return view('setting');
     }
 
     
     //Add new society
-    public function store(Request $request){
+     public function store(Request $request){
         $societyProfile = new Society();
 
         $societyProfile->name=$request->input('name');
@@ -36,14 +42,16 @@ class SocietyController extends Controller
         }
 
         $societyProfile->save();
-
+        
         return view('setting')->with('societyInfo',$societyProfile);
         
 
-    } 
+    }  
+
+    
 
     //Display society info
-    public function display(){
+    public function show(){
         $user_id = Auth::user()->studentId;
         $societies = Society::all();
         $societyInfo = $societies->where('user_id',$user_id)->first();
@@ -87,5 +95,17 @@ class SocietyController extends Controller
         $societies = Society::paginate(8);
         return view('society')->with('societies',$societies);
     }
+
+    //Extract individual society info for user.
+    public function userviewSocietyDetailPage($id){
+        $societyInfo=Society::find($id);
+        $eventsInfo = Event::where("club_id",'=',$societyInfo->id)->get();
+
+        return view('societyDetail')->with('societyInfo',$societyInfo)->with('eventsInfo',$eventsInfo);
+    }
+
+    
+
+    
 
 }

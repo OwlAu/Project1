@@ -12,7 +12,7 @@ class SocietyMember extends Model
     protected $fillable = [
     'user_id',
     'status',
-    'image',
+    'paymentImage',
     'club_id'
     ];
 }
