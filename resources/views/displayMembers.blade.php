@@ -19,7 +19,7 @@ use App\Models\User;
     <h3>Society's Announcement List</h3>
 </div>
 <div class='container'>
-
+    <h3>Total number of members: {{$pendingUsers->count()}}</h3>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -46,17 +46,11 @@ use App\Models\User;
                 <td>
                     {{-- <a href='/accept_user_request/{{$pendingUser->user_id}}' type="button"
                     class="btn btn-warning">Accept</a> --}}
-                    <form method="POST" action="/accept_user_request/{{$pendingUser->user_id}}" accept-charset="UTF-8">
-                        {{method_field('PUT')}}
-                        @csrf
-                        <button type="submit" class="btn btn-warning">Accept</button>
-                        <input type="hidden" value="{{$pendingUser->user_id}}" name='user_id' />
-                    </form>
                     {{-- <a href='' type="button" class="btn btn-danger">Deny</a> --}}
-                    <form method="POST" action="/deny_user_request/{{$pendingUser->user_id}}" accept-charset="UTF-8">
+                    <form method="POST" action="/kick_member/{{$pendingUser->user_id}}" accept-charset="UTF-8">
                         {{method_field('PUT')}}
                         @csrf
-                        <button type="submit" class="btn btn-danger">Deny</button>
+                        <button type="submit" class="btn btn-danger">Kick out</button>
                         <input type="hidden" value="{{$pendingUser->user_id}}" name='user_id' />
                     </form>
                 </td>

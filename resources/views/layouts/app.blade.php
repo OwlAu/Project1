@@ -99,7 +99,7 @@
                                 <a class="dropdown-item" href='/pending_member_list'>
                                     Pending Member
                                 </a>
-                                <a class="dropdown-item" href=#">
+                                <a class="dropdown-item" href='/member_list'>
                                     My member
                                 </a>
                                 <a class="dropdown-item" href=#">

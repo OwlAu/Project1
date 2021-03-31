@@ -50,10 +50,10 @@ class SocietyMemberController extends Controller
         }
 
         //Check if the user joined the society before.
-        $validateUser = DB::table('society_members')->where('club_id',$memberRegistration->club_id)->where('user_id',$memberRegistration->user_id)->get();
-       
+        $validateUser = DB::table('society_members')->where('club_id',$memberRegistration->club_id)->where('user_id',$memberRegistration->user_id)->first();
+        
         if($validateUser===NULL){
-            $memberRegistration->save(); 
+            $memberRegistration->save();
         } else{
             return view('joinedSocietyError');
         }
@@ -66,6 +66,55 @@ class SocietyMemberController extends Controller
     public function displayPendingUser(){
         $pendingUsers = SocietyMember::where('status','=','pending')->get();
         return view('displayPendingUser')->with('pendingUsers',$pendingUsers);
+    }
+
+    //Accept user request
+    public function acceptSocietyRequest(Request $request){
+        //Get user id
+        $userId = $request->user_id;
+        //Search for user details
+        $member=SocietyMember::where('user_id','=',$userId)->first();
+        //Change status to "enrolled"
+        $member->status='enrolled';
+        $member->save();
+
+        $pendingUsers = SocietyMember::where('status','=','pending')->get();
+        return view('displayPendingUser')->with('pendingUsers',$pendingUsers);
+
+    }
+
+    //Deny user request
+    public function denySocietyRequest(Request $request){
+        //Get user id
+        $userId = $request->user_id;
+        //Search for user details
+        $member=SocietyMember::where('user_id','=',$userId)->first();
+        //Change status to "deny"
+        $member->status='deny';
+        $member->save();
+
+        $pendingUsers = SocietyMember::where('status','=','pending')->get();
+        return view('displayPendingUser')->with('pendingUsers',$pendingUsers);
+    }
+
+    //Kick out members
+    public function kickSocietyRequest(Request $request){
+        //Get user id
+        $userId = $request->user_id;
+        //Search for user details
+        $member=SocietyMember::where('user_id','=',$userId)->first();
+        //Change status to "deny"
+        $member->status='deny';
+        $member->save();
+
+        $pendingUsers = SocietyMember::where('status','=','pending')->get();
+        return redirect('/member_list')->with('pendingUsers',$pendingUsers);
+    }
+
+    //Display members.(Pending)
+    public function displayMembers(){
+        $pendingUsers = SocietyMember::where('status','=','enrolled')->get();
+        return view('displayMembers')->with('pendingUsers',$pendingUsers);
     }
 
    

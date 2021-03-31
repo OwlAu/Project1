@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@php
+use Illuminate\Support\Facades\DB;
+$validateUser =
+DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('user_id',$societyInfo->user_id)->first();
+@endphp
+
 @section('content')
 
 <head>
@@ -13,7 +19,15 @@
     <header class="white-text-container section-container">
         <div class="text-center">
             <h1>{{$societyInfo->name}}</h1>
+            {{-- Dynamic Button START --}}
+            @if($societyInfo->societyAvailability === 0 )
+            <a class='btn btn btn-warning mt-3' href=''>Unavailable</a>
+            @elseif($validateUser===NULL)
+            <a class='btn btn btn-warning mt-3' href=''>Joined</a>
+            @else
             <a class='btn btn btn-success mt-3' href='/society/{{$societyInfo->id}}/register_society'>Join us</a>
+            @endif
+            {{-- Dynamic Button END --}}
             <p>
                 <a hidden class="fa-icon fa-icon-2x" href="https://facebook.com/" title="">
                     <i class="fa fa-facebook"></i>

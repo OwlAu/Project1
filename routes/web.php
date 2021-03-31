@@ -82,13 +82,18 @@ Route::post('/create_new_event',[EventController::class,'store'])->name('/create
 /* Moderator's Event List */
 Route::get("/event_list",[EventController::class,'display']);
 
-/* Moderator's Pending Member List */
+/* Moderator's Pending|MyMember Member List */
 Route::get('/pending_member_list',[SocietyMemberController::class,'displayPendingUser']);
+Route::get('/member_list',[SocietyMemberController::class,'displayMembers']);
 
 /* User join a society */
 Route::get('/society/{id}/register_society',[SocietyMemberController::class,'index']);
 Route::post('/society/{id}/register_society',[SocietyMemberController::class,'store'])->name('/society/{id}/register_society');
 
+//Accept & Deny & Kick out user registration
+Route::put('/accept_user_request/{id}',[SocietyMemberController::class,'acceptSocietyRequest']);
+Route::put('/deny_user_request/{id}',[SocietyMemberController::class,'denySocietyRequest']);
+Route::put('/kick_member/{id}',[SocietyMemberController::class,'kickSocietyRequest']);
 
 Auth::routes();
 
