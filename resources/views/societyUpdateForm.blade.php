@@ -8,6 +8,7 @@
       var fileName = $(this).val().split("\\").pop();
       $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
+    
 </script>
 <div class="container">
     <div class="row justify-content-center">
@@ -35,7 +36,8 @@
                             <div class='form-group'>
                                 <label>Description:</label>
                                 {{-- <input type='textarea' name='description' class='form-control' placeholder="Enter description:"> --}}
-                                <textarea name="description" class='form-control' rows="5" cols="30">
+                                <textarea style='white-space: pre-wrap;
+                                ' name="description" class='form-control' rows="5" cols="30">
                                 </textarea>
                                 <span style='color:red'>@error('description'){{$message}}@enderror</span>
                             </div>

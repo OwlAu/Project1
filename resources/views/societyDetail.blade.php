@@ -75,7 +75,13 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
 
                 <div class="card">
                     <div class="card-block">
-                        <h2>Events</h2>
+                        <form method="POST" action="/society/{{$societyInfo->id}}/events" accept-charset="UTF-8">
+                            @csrf
+                            <button type="submit" class="btn-link">
+                                <h2>Events >> </h2>
+                            </button>
+                            <input hidden value="{{$societyInfo->id}}" name='id' />
+                        </form>
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
                             <!-- Wrapper for slides -->
@@ -123,26 +129,32 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
 
                 <div class="card">
                     <div class="card-block">
-                        <h2>Work</h2>
+                        <form method="POST" action="/society/{{$societyInfo->id}}/announcements" accept-charset="UTF-8">
+                            @csrf
+                            <button type="submit" class="btn-link">
+                                <h2>Latest Announcement >> </h2>
+                            </button>
+                            <input hidden value="{{$societyInfo->id}}" name='id' />
+                        </form>
+
+                        {{-- <a href='/society/{{$societyInfo->id}}/announcements'>
+                        <h2>Lastest Announcement >> </h2>
+                        </a> --}}
+
                         <div class="work-experience">
-                            <small class="date">2017-2015</small>
-                            <h3 class="h5 date-title">Web developer - <a href="http://en.orson.io"
-                                    title="Create professionnal website">Orson.io</a></h3>
+                            <small class="date"> {{$announcements[0]->created_at}}</small>
+                            <h3 class="h5 date-title">{{$announcements[0]->title}}
+                                <a href="http://en.orson.io" title="Create professionnal website"></a></h3>
 
-
-                            <p>Leo vel orci porta non pulvinar neque laoreet suspendisse interdum. Vitae ultricies leo
-                                integer malesuada nunc. Imperdiet proin fermentum leo vel orci porta non pulvinar neque.
-                                Fermentum leo vel orci porta non. Posuere sollicitudin aliquam ultrices sagittis.
-                                Aliquam faucibus purus in massa tempor nec.</p>
+                            <p>{{$announcements[0]->description}}</p>
                         </div>
 
                         <div class="work-experience">
-                            <small class="date">2017-2015</small>
-                            <h3 class="h5 date-title">Web developer - <a href="http://mashup-template.com"
-                                    title="">Mashup Template</a></h3>
+                            <small class="date">{{$announcements[1]->created_at}}</small>
+                            <h3 class="h5 date-title">{{$announcements[1]->title}} <a href="http://mashup-template.com"
+                                    title=""></a></h3>
 
-                            <p>Fermentum leo vel orci porta non. Posuere sollicitudin aliquam ultrices sagittis. Aliquam
-                                faucibus purus in massa tempor nec.</p>
+                            <p>{{$announcements[1]->description}}</p>
                         </div>
                     </div>
                 </div>

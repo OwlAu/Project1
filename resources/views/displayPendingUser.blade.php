@@ -56,7 +56,7 @@ use App\Models\User;
                     <form method="POST" action="/deny_user_request/{{$pendingUser->user_id}}" accept-charset="UTF-8">
                         {{method_field('PUT')}}
                         @csrf
-                        <button type="submit" class="btn btn-danger">Deny</button>
+                        <button type="submit" class="btn btn-warning">Deny</button>
                         <input type="hidden" value="{{$pendingUser->user_id}}" name='user_id' />
                     </form>
                 </td>

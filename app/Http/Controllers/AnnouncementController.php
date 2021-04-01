@@ -97,4 +97,14 @@ class AnnouncementController extends Controller
         $announcement->delete();
         return redirect('announcement_list')->with('announcement',$announcement);
     }
+
+    public function index(Request $request){
+        $clubId = $request->id;
+        $announcements = Announcement::where('club_id','=',$clubId)->get();
+        $societyInfo = Society::find($clubId);
+
+        return view('displayAnnouncements')
+        ->with('announcements',$announcements)
+        ->with('societyInfo',$societyInfo);
+    }
 }

@@ -102,9 +102,6 @@
                                 <a class="dropdown-item" href='/member_list'>
                                     My member
                                 </a>
-                                <a class="dropdown-item" href=#">
-                                    Member settings
-                                </a>
                             </div>
                         </li>
                         {{-- Event Dropdown Button --}}
@@ -115,9 +112,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href=#">
-                                    Pending Event
-                                </a>
+
                                 <a class="dropdown-item" href='/create_new_event'>
                                     New Event
                                 </a>

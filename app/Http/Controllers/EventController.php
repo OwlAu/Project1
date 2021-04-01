@@ -28,6 +28,7 @@ class EventController extends Controller
         $newEvent->eventFees=$request->input('eventFees');
         $newEvent->eventRegistration=$request->input('eventRegistration');
         $newEvent->eventDate=$request->input('eventDate');
+        $newEvent->maxParticipants=$request->input('maxParticipants');
         $newEvent->club_id=$society_id;
 
         if($request->hasfile('image')){
@@ -64,4 +65,26 @@ class EventController extends Controller
         $events = Event::paginate(8);
         return view('event')->with('events',$events);
     }
+
+    public function displaySocietyEvent(Request $request){
+        $clubId = $request->id;
+        $events = Event::where('club_id','=',$clubId)->get();
+        $societyInfo = Society::find($clubId);
+
+        return view('displaySocietyEvents')
+        ->with('events',$events)
+        ->with('societyInfo',$societyInfo);
+    }
+
+    public function displaySocietyEventDetail(Request $request){
+        $clubId = $request->societyId;
+        $eventId = $request->eventId;
+        $event = Event::where('id','=',$eventId)->first();
+        $societyInfo = Society::find($clubId);
+
+        return view('displaySocietyEventsDetail')
+        ->with('event',$event)
+        ->with('societyInfo',$societyInfo);
+    }
+
 }

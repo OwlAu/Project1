@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Facade\DB;
-use App\Models\Society;
 use Intervention\Image\Facade\Image;
 use Auth;
 use App\Models\Event;
+use App\Models\Society;
+use App\Models\Announcement;
 
 class SocietyController extends Controller
 {
@@ -100,8 +101,12 @@ class SocietyController extends Controller
     public function userviewSocietyDetailPage($id){
         $societyInfo=Society::find($id);
         $eventsInfo = Event::where("club_id",'=',$societyInfo->id)->get();
+        $announcements = Announcement::where('club_id','=',$societyInfo->id)->get();
 
-        return view('societyDetail')->with('societyInfo',$societyInfo)->with('eventsInfo',$eventsInfo);
+        return view('societyDetail')
+        ->with('societyInfo',$societyInfo)
+        ->with('eventsInfo',$eventsInfo)
+        ->with('announcements',$announcements);
     }
 
     

@@ -50,11 +50,26 @@
                             <div class='form-group'>
                                 <label>Event Fees(RM):</label>
                                 <div>
-                                    <input id="eventFees" type="title"
+                                    <input id="eventFees" type="number"
                                         class="form-control @error('eventFees') is-invalid @enderror" name="eventFees"
                                         value="{{ old('eventFees') }}" required autocomplete="eventFees" autofocus>
 
                                     @error('eventFees')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <label>Maximum Participants:</label>
+                                <div>
+                                    <input id="maxParticipants" type="number"
+                                        class="form-control @error('maxParticipants') is-invalid @enderror"
+                                        name="maxParticipants" value="{{ old('maxParticipants') }}" required
+                                        autocomplete="maxParticipants" autofocus>
+
+                                    @error('maxParticipants')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

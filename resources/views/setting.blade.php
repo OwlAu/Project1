@@ -68,7 +68,8 @@
                                 <h3>Society Availability:</h3>
                             </div>
                             <div class="col">
-                                <h3>{{($societyInfo->societyAvailability)? 'Open':'Close'}}</h3>
+                                <h3>{{($societyInfo->societyAvailability)? 'Open':'Close'}}
+                                </h3>
                             </div>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\SocietyMemberController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\EventParticipantController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,6 +94,15 @@ Route::post('/society/{id}/register_society',[SocietyMemberController::class,'st
 Route::put('/accept_user_request/{id}',[SocietyMemberController::class,'acceptSocietyRequest']);
 Route::put('/deny_user_request/{id}',[SocietyMemberController::class,'denySocietyRequest']);
 Route::put('/kick_member/{id}',[SocietyMemberController::class,'kickSocietyRequest']);
+
+//Society's announcements
+Route::post('/society/{id}/announcements',[AnnouncementController::class,'index']);
+
+//Society's events & event's details
+Route::post('/society/{id}/events',[EventController::class,'displaySocietyEvent']);
+Route::post('/society/{id}/events/{name}',[EventController::class,'displaySocietyEventDetail']);
+Route::post('/society/{id}/events/{name}/register',[EventParticipantController::class,'eventRegistrationForm']);
+Route::post('/society/{id}/events/{name}/registerUser',[EventParticipantController::class,'store']);
 
 Auth::routes();
 
