@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ForumPost extends Model
 {
     use HasFactory;
+    protected $table ='forum_posts';
+    protected $fillable = [
+    'club_id',
+    'title',
+    'image',
+    ];
 }

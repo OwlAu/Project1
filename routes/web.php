@@ -7,6 +7,7 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\SocietyMemberController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventParticipantController;
+use App\Http\Controllers\ForumPostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -103,6 +104,11 @@ Route::post('/society/{id}/events',[EventController::class,'displaySocietyEvent'
 Route::post('/society/{id}/events/{name}',[EventController::class,'displaySocietyEventDetail']);
 Route::post('/society/{id}/events/{name}/register',[EventParticipantController::class,'eventRegistrationForm']);
 Route::post('/society/{id}/events/{name}/registerUser',[EventParticipantController::class,'store']);
+
+//Society's forum
+Route::get('/create_society_forum',[ForumPostController::class,'createForumForm']);
+Route::post('/create_society_forum',[ForumPostController::class,'store']);
+
 
 Auth::routes();
 

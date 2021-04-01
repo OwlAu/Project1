@@ -145,7 +145,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href=#">
+                                <a class="dropdown-item" href='/create_society_forum'>
                                     New Forum
                                 </a>
                                 <a class="dropdown-item" href=#">

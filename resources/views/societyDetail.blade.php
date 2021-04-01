@@ -87,7 +87,7 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
                                 <div class="item active">
-                                    <img style='width:20%'
+                                    <img style='width:40%'
                                         src="{{asset('uploads/announcementImage/'.$eventsInfo[0]->image)}}"
                                         class="img-responsive" alt="...">
                                     <div class="carousel-caption">
@@ -96,7 +96,7 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img style='width:20%'
+                                    <img style='width:40%'
                                         src="{{asset('uploads/announcementImage/'.$eventsInfo[1]->image)}}"
                                         class="img-responsive" alt="...">
                                     <div class="carousel-caption">
@@ -106,7 +106,7 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
                                 </div>
 
                                 <div class="item">
-                                    <img style='width:20%'
+                                    <img style='width:40%'
                                         src="{{asset('uploads/announcementImage/'.$eventsInfo[2]->image)}}"
                                         class="img-responsive" alt="...">
                                     <div class="carousel-caption">
@@ -158,24 +158,28 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
                         </div>
                     </div>
                 </div>
+
                 <div class="card">
                     <div class="card-block">
-                        <h2>Events</h2>
+                        <h2>Memories</h2>
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="./assets/images/img-02.jpg" class="img-responsive" alt="">
-                                <h3 class="h5">Amelia App</h3>
-                                <p>June 2017</p>
+                                <img src="{{asset('uploads/announcementImage/'.$forums[0]->image)}}"
+                                    class="img-responsive" alt="">
+                                <h3 class="h5">{{$forums[0]->title}}</h3>
+                                <p>{{$forums[0]->created_at}}</p>
                             </div>
                             <div class="col-md-4">
-                                <img src="./assets/images/img-03.jpg" class="img-responsive" alt="">
-                                <h3 class="h5">Portland</h3>
-                                <p>March 2017</p>
+                                <img src="{{asset('uploads/announcementImage/'.$forums[1]->image)}}"
+                                    class="img-responsive" alt="">
+                                <h3 class="h5">{{$forums[1]->title}}</h3>
+                                <p>{{$forums[1]->created_at}}</p>
                             </div>
                             <div class="col-md-4">
-                                <img src="./assets/images/img-04.jpg" class="img-responsive" alt="">
-                                <h3 class="h5">Denz for Nilon</h3>
-                                <p>Jan 2017</p>
+                                <img src="{{asset('uploads/announcementImage/'.$forums[2]->image)}}"
+                                    class="img-responsive" alt="">
+                                <h3 class="h5">{{$forums[2]->title}}</h3>
+                                <p>{{$forums[2]->created_at}}</p>
                             </div>
                         </div>
                     </div>
@@ -184,69 +188,15 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
 
 
 
-                <div class="card">
-                    <div class="card-block">
-                        <h2>Education</h2>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="education-experience">
-                                    <small class="date">2017-2015</small>
-                                    <h3 class="h5 date-title">Design Master</h3>
-                                    <p>Chicago University</p>
-                                </div>
 
-                            </div>
-                            <div class="col-md-4">
-                                <div class="education-experience">
-                                    <small class="date">2015-2012</small>
-                                    <h3 class="h5 date-title">Metrics Degree</h3>
-                                    <p>Ecole 87</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="education-experience">
-                                    <small class="date">2012-2011</small>
-                                    <h3 class="h5 date-title">Motion Design Course</h3>
-                                    <p>Pascal’s Lee Studio</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-block">
-                        <h2>Language</h2>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="language-experience">
-                                    <h3 class="h5">English <small>Bilingual</small></h3>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="language-experience">
-                                    <h3 class="h5">French <small>Fluent</small></h3>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="language-experience">
-                                    <h3 class="h5">Russian <small>Beginner</small></h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="card">
+                {{-- <div class="card">
                     <div class="card-block">
                         <h2>Social Network</h2>
                         <div class="row">
                             <div class="col-md-3">
                                 <p class="social-buttons"><a href="https://twitter.com/" title=""><span
                                             class="social-round-icon fa-icon"><i
-                                                class="fa fa-twitter"></i></span>@David_Folley</a></p>
+                                                class="fa fa-facebook"></i></span>@David_Folley</a></p>
                             </div>
                             <div class="col-md-3">
                                 <p class="social-buttons"><a href="https://www.linkedin.com/" title=""><span
@@ -260,27 +210,7 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-block">
-                        <h2>Contact</h2>
-                        <form action="" class="reveal-content">
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="subject" placeholder="Subject">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" rows="5" placeholder="Enter your message"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class=" btn btn-primary">Send message</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>

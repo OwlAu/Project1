@@ -20,6 +20,7 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
 <div class="background-color-layer" style="background-image: url('assets/images/img-01.jpg')"></div>
 <main class="content-wrapper">
     <header class="white-text-container section-container">
+
         <div class="text-center">
             <h1>{{$societyInfo->name}}</h1>
             <h2>Events</h2>

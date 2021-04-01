@@ -9,6 +9,7 @@ use Auth;
 use App\Models\Event;
 use App\Models\Society;
 use App\Models\Announcement;
+use App\Models\ForumPost;
 
 class SocietyController extends Controller
 {
@@ -102,11 +103,13 @@ class SocietyController extends Controller
         $societyInfo=Society::find($id);
         $eventsInfo = Event::where("club_id",'=',$societyInfo->id)->get();
         $announcements = Announcement::where('club_id','=',$societyInfo->id)->get();
+        $forums = ForumPost::where('club_id','=',$societyInfo->id)->get();
 
         return view('societyDetail')
         ->with('societyInfo',$societyInfo)
         ->with('eventsInfo',$eventsInfo)
-        ->with('announcements',$announcements);
+        ->with('announcements',$announcements)
+        ->with('forums',$forums);
     }
 
     
