@@ -1,56 +1,46 @@
 @extends('layouts.app')
+@section('content')
 
+<head>
+    {{-- Imported Society Detail Page CSS --}}
+    <link href="{{ asset('css/societyDetail.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="{{asset('js/main.bc58148c.js')}}"></script>
+</head>
 <style>
-    .card {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 10px;
-    }
-
-    .flex-container {
-        flex-direction: row;
-        display: flex;
-        flex-wrap: wrap;
-        margin-left: 30px;
-        margin-right: 30px;
-        justify-content: center;
-    }
-
-    .societyContainer {
-        margin-left: 30px;
-        margin-right: 30px;
-        padding: 0px;
-        justify-content: center;
-        position: absolute;
-    }
-
     .w-5 {
         display: none
     }
 </style>
-@section('content')
-<div class="societyContainer">
-    <div class="col-md-15">
-        <h3>Pick your favourite society! There are  {{$societies->count()}} for you to pick from!</h3>
-    
-        <div class='flex-container'>
-            @foreach($societies as $society)
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{asset('uploads/societyLogo/'.$society->logo)}}" alt="Card image cap">
-                <div class="card-body">
-                    <p style='float:left;' class="card-text">{{$society->name}}</p>
-                    <a style='float:right;' href='/society/{{$society->id}}'>Learn More></a>
+<!-- Add your content of header -->
+<div class="background-color-layer" style="background-image: url('assets/images/img-01.jpg')"></div>
+<main class="content-wrapper">
+
+    <!-- Add your site or app content here -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-block">
+                        <h2>Societies</h2>
+                        <div class="row">
+                            @foreach ($societies as $society)
+                            <div class="col-md-4">
+                                <img src="{{asset('uploads/societyLogo/'.$society->logo)}}" class="img-responsive"
+                                    alt="">
+                                <h3 class="h5">{{$society->name}}</h3>
+                                <a style='float:right;' href='/society/{{$society->id}}'>Learn More></a>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="mx-auto">
+                            {{$societies->links('pagination::bootstrap-4')}}
+                        </div>
+                    </div>
                 </div>
             </div>
-            @endforeach
         </div>
-    </div>
-    <div class="d-flex" >
-        <div class="mx-auto">
-            {{$societies->links('pagination::bootstrap-4')}}
-        </div>
-    </div>
-</div>
 
-
+</main>
 @endsection

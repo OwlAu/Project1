@@ -40,6 +40,8 @@ Route::get("/society/{id}",[SocietyController::class,'userviewSocietyDetailPage'
 
 /* Event Page */
 Route::get("/event",[EventController::class,'userviewEventPage']);
+Route::get("/events/{id}",[EventController::class,'userviewEventDetailPage']);
+
 
 /* Moderator's Setting Page */
 /* Route::get('/setting',function(){

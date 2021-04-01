@@ -59,6 +59,15 @@ class EventController extends Controller
         return view('eventList')->with('events',$events);
     }
 
+    public function userviewEventDetailPage($id){
+        $eventInfo=Event::find($id);
+        $societyId = $eventInfo->club_id;
+        $societyInfo = Society::find($societyId);
+        return view('eventDetail')
+        ->with('eventInfo',$eventInfo)
+        ->with('societyInfo',$societyInfo);
+    }
+
     //Extract society info for user to view.(/event)
     public function userviewEventPage(){
         //$societies = Society::all();
