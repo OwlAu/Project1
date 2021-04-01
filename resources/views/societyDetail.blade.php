@@ -161,7 +161,13 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
 
                 <div class="card">
                     <div class="card-block">
-                        <h2>Memories</h2>
+                        <form method="POST" action="/society/{{$societyInfo->id}}/memories" accept-charset="UTF-8">
+                            @csrf
+                            <button type="submit" class="btn-link">
+                                <h2>Our Memories >> </h2>
+                            </button>
+                            <input hidden value="{{$societyInfo->id}}" name='id' />
+                        </form>
                         <div class="row">
                             <div class="col-md-4">
                                 <img src="{{asset('uploads/announcementImage/'.$forums[0]->image)}}"

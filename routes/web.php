@@ -108,7 +108,7 @@ Route::post('/society/{id}/events/{name}/registerUser',[EventParticipantControll
 //Society's forum
 Route::get('/create_society_forum',[ForumPostController::class,'createForumForm']);
 Route::post('/create_society_forum',[ForumPostController::class,'store']);
-
+Route::post('/society/{id}/memories',[ForumPostController::class,'index']);
 
 Auth::routes();
 

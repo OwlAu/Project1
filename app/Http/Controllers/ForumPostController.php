@@ -14,9 +14,14 @@ class ForumPostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $societyId = $request->id;
+        
+        $forums = ForumPost::where('club_id','=',$societyId)->get();
+        $societyInfo=Society::find($societyId);
+
+        return view('displaySocietyForum')->with('forums',$forums)->with('societyInfo',$societyInfo);
     }
 
     /**
