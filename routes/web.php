@@ -8,6 +8,7 @@ use App\Http\Controllers\SocietyMemberController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventParticipantController;
 use App\Http\Controllers\ForumPostController;
+use App\Http\Controllers\ConfessionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,10 +29,9 @@ Route::get('/', function () {
 Route::get('/profile', [UserController::class,'show']);
 Route::put('/update_user_profile/{id}',[UserController::class,'update']);
 
-/* Forum Page */
-Route::get('/forum', function () {
-    return view('profile');
-});
+/* Confession Page */
+Route::get('/confession', [ConfessionController::class,'index']);
+Route::post('/create_confession', [ConfessionController::class,'store']);
 
 /* Society Page */
 Route::get("society",[SocietyController::class,'userviewSocietyPage']);
@@ -109,8 +109,11 @@ Route::post('/society/{id}/events/{name}/registerUser',[EventParticipantControll
 
 //Society's forum
 Route::get('/create_society_forum',[ForumPostController::class,'createForumForm']);
+Route::get('/society_forum_list',[ForumPostController::class,'societyForumList']);
 Route::post('/create_society_forum',[ForumPostController::class,'store']);
 Route::post('/society/{id}/memories',[ForumPostController::class,'index']);
+Route::put('/update_forum/{id}',[ForumPostController::class,'update']);
+Route::get('/delete_forum/{id}',[ForumPostController::class,'destroy']);
 
 Auth::routes();
 

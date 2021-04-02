@@ -101,9 +101,9 @@ class SocietyController extends Controller
     //Extract individual society info for user.
     public function userviewSocietyDetailPage($id){
         $societyInfo=Society::find($id);
-        $eventsInfo = Event::where("club_id",'=',$societyInfo->id)->get();
-        $announcements = Announcement::where('club_id','=',$societyInfo->id)->get();
-        $forums = ForumPost::where('club_id','=',$societyInfo->id)->get();
+        $eventsInfo = Event::where("club_id",'=',$societyInfo->id)->orderBy('created_at')->get();
+        $announcements = Announcement::where('club_id','=',$societyInfo->id)->orderBy('created_at')->get();
+        $forums = ForumPost::where('club_id','=',$societyInfo->id)->orderBy('created_at')->get();
 
         return view('societyDetail')
         ->with('societyInfo',$societyInfo)

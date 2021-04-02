@@ -104,7 +104,6 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
                                         <p>{{$eventsInfo[1]->description}}</p>
                                     </div>
                                 </div>
-
                                 <div class="item">
                                     <img style='width:40%'
                                         src="{{asset('uploads/announcementImage/'.$eventsInfo[2]->image)}}"
@@ -170,20 +169,20 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
                         </form>
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="{{asset('uploads/announcementImage/'.$forums[0]->image)}}"
-                                    class="img-responsive" alt="">
+                                <img src="{{asset('uploads/forumImage/'.$forums[0]->image)}}" class="img-responsive"
+                                    alt="">
                                 <h3 class="h5">{{$forums[0]->title}}</h3>
                                 <p>{{$forums[0]->created_at}}</p>
                             </div>
                             <div class="col-md-4">
-                                <img src="{{asset('uploads/announcementImage/'.$forums[1]->image)}}"
-                                    class="img-responsive" alt="">
+                                <img src="{{asset('uploads/forumImage/'.$forums[1]->image)}}" class="img-responsive"
+                                    alt="">
                                 <h3 class="h5">{{$forums[1]->title}}</h3>
                                 <p>{{$forums[1]->created_at}}</p>
                             </div>
                             <div class="col-md-4">
-                                <img src="{{asset('uploads/announcementImage/'.$forums[2]->image)}}"
-                                    class="img-responsive" alt="">
+                                <img src="{{asset('uploads/forumImage/'.$forums[2]->image)}}" class="img-responsive"
+                                    alt="">
                                 <h3 class="h5">{{$forums[2]->title}}</h3>
                                 <p>{{$forums[2]->created_at}}</p>
                             </div>

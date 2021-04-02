@@ -40,16 +40,16 @@
                     <ul class="navbar-nav mr-auto">
                         @can('isModerator')
                         <li class="nav-item">
-                            <a class='nav-link' href="society">Society</a>
+                            <a class='nav-link' href="/society">Society</a>
                         </li>
                         <li class="nav-item">
-                            <a class='nav-link' href="event">Event</a>
+                            <a class='nav-link' href="/event">Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class='nav-link' href="forum">Forum</a>
+                            <a class='nav-link' href="/confession">Confession</a>
                         </li>
                         <li class="nav-item">
-                            <a class='nav-link' href="profile">Profile</a>
+                            <a class='nav-link' href="/profile">Profile</a>
                         </li>
                         @endcan
                     </ul>
@@ -73,16 +73,16 @@
                         {{-- User NavBar Item --}}
                         @can('isUser')
                         <li class="nav-item">
-                            <a class='nav-link' href="society">Society</a>
+                            <a class='nav-link' href="/society">Society</a>
                         </li>
                         <li class="nav-item">
-                            <a class='nav-link' href="event">Event</a>
+                            <a class='nav-link' href="/event">Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class='nav-link' href="forum">Forum</a>
+                            <a class='nav-link' href="/confession">Confession</a>
                         </li>
                         <li class="nav-item">
-                            <a class='nav-link' href="profile">Profile</a>
+                            <a class='nav-link' href="/profile">Profile</a>
                         </li>
                         @endcan
 
@@ -148,7 +148,7 @@
                                 <a class="dropdown-item" href='/create_society_forum'>
                                     New Forum
                                 </a>
-                                <a class="dropdown-item" href=#">
+                                <a class="dropdown-item" href='/society_forum_list'>
                                     Forum List
                                 </a>
                             </div>

@@ -60,8 +60,8 @@ DB::table('society_members')->where('club_id',$societyInfo->club_id)->where('use
                                 <div class="row">
                                     @foreach ($forums as $forum)
                                     <div class="col-md-4">
-                                        <img src="{{asset('uploads/announcementImage/'.$forum->image)}}"
-                                            class="img-responsive" alt="">
+                                        <img src="{{asset('uploads/forumImage/'.$forum->image)}}" class="img-responsive"
+                                            alt="">
                                         <h3 class="h5">{{$forum->title}}</h3>
                                         <p>{{$forum->created_at}}</p>
                                     </div>

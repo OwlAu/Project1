@@ -52,7 +52,7 @@ class ForumPostController extends Controller
             $file=$request->file('image');
             $extension = $file ->getClientOriginalExtension();//getting image extension
             $filename = time().".".$extension;
-            $file->move('uploads/announcementImage/',$filename);
+            $file->move('uploads/forumImage/',$filename);
             $newForum->image=$filename;
         } else {
             return $request;
@@ -61,11 +61,8 @@ class ForumPostController extends Controller
 
         $newForum->save();
 
-        //$announcements = DB::table('announcements')->where('club_id', '=', $society_id)->get();
-
-        //return view('setting')->with('setting',$newForum);
-        //return view('announcementList')->with('announcements',$announcements);
-        return view('home');
+        $forums = ForumPost::where('club_id','=',$society_id);
+        return redirect('/society_forum_list');
     }
 
     /**
@@ -99,10 +96,22 @@ class ForumPostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $forum = ForumPost::find($id);
+        $forum->delete();
+        return redirect('/forum_list');
     }
 
     public function createForumForm(){
         return view('createForumForm');
+    }
+
+    public function societyForumList(){
+        $userId = Auth::user()->studentId;
+        $societyInfo = Society::where('user_id','=',$userId)->first();
+        $societyId = $societyInfo->id;
+
+        $forums = ForumPost::where('club_id','=',$societyId)->get();
+
+        return view('societyForumList')->with('forums',$forums);
     }
 }
