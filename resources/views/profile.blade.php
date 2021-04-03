@@ -1,5 +1,10 @@
 @extends('layouts.app')
+@php
+use App\Models\Society;
+use App\Models\Event;
 
+
+@endphp
 <style>
     .container {
         margin-top: 10px;
@@ -78,7 +83,7 @@
                                             </div>
                                         </div>
                                         <div class='form-group'>
-                                            <label>Society Registration Availability:</label>
+                                            <label>Faculty:</label>
                                             <select class="form-select" name='faculty'
                                                 aria-label="Default select example">
                                                 <option value="0"></option>
@@ -197,4 +202,126 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <h3 style='margin-top:25px; margin-left:40px;   text-decoration: underline;'>Society List:</h3>
+                <div class="card-body">
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+
+                    <div class="container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Status</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($societiesInfo as $societyInfo)
+                                <tr>
+                                    <td>{{Society::find($societyInfo->club_id)->name}}</td>
+                                    <td>{{$societyInfo->status}} </td>
+                                    <td><a href='/society/{{$societyInfo->club_id}}'>More</a> </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <h3 style='margin-top:25px; margin-left:40px; text-decoration: underline'>Event List:</h3>
+
+                <div class="card-body">
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+
+                    <div class="container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($eventsInfo as $eventInfo)
+                                <tr>
+                                    <td>{{$eventInfo->event_id}}</td>
+                                    <td>{{Event::find($eventInfo->event_id)->title}}</td>
+                                    <td>{{$eventInfo->status}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <h3 style='margin-top:25px; margin-left:40px; text-decoration: underline'>My Confessions:</h3>
+
+                <div class="card-body">
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+
+                    <div class="container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Content</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($confessions as $confession)
+                                <tr>
+                                    <td>{{$confession->id}}</td>
+                                    <td>{{$confession->content}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</main>
 @endsection

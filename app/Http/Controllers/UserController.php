@@ -5,12 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
-
+use App\Models\SocietyMember;
+use App\Models\EventParticipant;
+use App\Models\Confession;
 class UserController extends Controller
 {
     public function show(){
         $userInfo = Auth::user();
-        return view('profile')->with('userInfo',$userInfo);
+        $userId = $userInfo->studentId;
+        $societiesInfo = SocietyMember::where('user_id','=',$userId)->get();
+        $eventsInfo = EventParticipant::where('user_id','=',$userId)->get();
+        $confessions = Confession::where('user_id','=',$userId)->get();
+        return view('profile')
+        ->with('userInfo',$userInfo)
+        ->with('societiesInfo',$societiesInfo)
+        ->with('eventsInfo', $eventsInfo)
+        ->with('confessions',$confessions);
     }
 
     public function update(Request $request, $id)

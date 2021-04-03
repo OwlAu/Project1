@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EventView;
+use App\Models\EventFeedback;
 use App\Models\Society;
 use App\Models\Event;
 use Illuminate\Http\Request;
@@ -60,12 +62,24 @@ class EventController extends Controller
     }
 
     public function userviewEventDetailPage($id){
+        $userId = Auth::user()->id;
+
         $eventInfo=Event::find($id);
+        $eventId=$eventInfo->id;
         $societyId = $eventInfo->club_id;
         $societyInfo = Society::find($societyId);
+        $feedbacks = EventFeedback::where('event_id','=',$eventId)->orderByDesc('created_at')->get();
+    
+        /* Event View function */
+        $newEventView = new EventView();
+        $newEventView->user_id = $userId;
+        $newEventView->event_id = $eventId;
+        $newEventView->save();
+
         return view('eventDetail')
         ->with('eventInfo',$eventInfo)
-        ->with('societyInfo',$societyInfo);
+        ->with('societyInfo',$societyInfo)
+        ->with('feedbacks',$feedbacks);
     }
 
     //Extract society info for user to view.(/event)
@@ -86,14 +100,25 @@ class EventController extends Controller
     }
 
     public function displaySocietyEventDetail(Request $request){
+        $userId = Auth::user()->id;
+
         $clubId = $request->societyId;
         $eventId = $request->eventId;
         $event = Event::where('id','=',$eventId)->first();
         $societyInfo = Society::find($clubId);
+        $feedbacks = EventFeedback::where('event_id','=',$eventId)->orderByDesc('created_at')->get();
+
+        /* Event view function */
+        $newEventView = new EventView();
+        $newEventView->user_id = $userId;
+        $newEventView->event_id = $eventId;
+        $newEventView->save();
 
         return view('displaySocietyEventsDetail')
-        ->with('event',$event)
-        ->with('societyInfo',$societyInfo);
+        ->with('eventInfo',$event)
+        ->with('societyInfo',$societyInfo)
+        ->with('feedbacks',$feedbacks);
+
     }
 
 }

@@ -164,7 +164,7 @@
                                 <a class="dropdown-item" href=#">
                                     Member Growth
                                 </a>
-                                <a class="dropdown-item" href=#">
+                                <a class="dropdown-item" href='/event_feedback'>
                                     Event Feedback
                                 </a>
                             </div>

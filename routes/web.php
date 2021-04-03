@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventParticipantController;
 use App\Http\Controllers\ForumPostController;
 use App\Http\Controllers\ConfessionController;
+use App\Http\Controllers\EventFeedbackController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -114,6 +115,11 @@ Route::post('/create_society_forum',[ForumPostController::class,'store']);
 Route::post('/society/{id}/memories',[ForumPostController::class,'index']);
 Route::put('/update_forum/{id}',[ForumPostController::class,'update']);
 Route::get('/delete_forum/{id}',[ForumPostController::class,'destroy']);
+
+//Society's feedback
+Route::post('/create_feedback',[EventFeedbackController::class,'store']);
+Route::get('/event_feedback',[EventFeedbackController::class,'index']);
+Route::get('/event_feedback/{id}',[EventFeedbackController::class,'show']);
 
 Auth::routes();
 
