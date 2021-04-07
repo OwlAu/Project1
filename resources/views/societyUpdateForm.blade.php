@@ -63,6 +63,16 @@
                             </div>
 
                             <div class='form-group'>
+                                <label>Bank:</label>
+                                <input type='text' name='bank' value='{{$societyProfile->bank}}' class='form-control'
+                                    placeholder="Enter the name of bank:">
+                            </div>
+                            <div class='form-group'>
+                                <label>Bank Account Number:</label>
+                                <input type='text' name='bankNumber' value='{{$societyProfile->bankNumber}}'
+                                    class='form-control' placeholder="Enter the bank account:">
+                            </div>
+                            <div class='form-group'>
                                 <label>Initial Society Logo:</label>
                                 <div class="row">
                                     <div class="col">

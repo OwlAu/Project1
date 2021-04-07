@@ -85,7 +85,37 @@ class ForumPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string', 'max:150'],
+            'image'=>['required']
+        ]);
+
+        //Search out the society_id
+        $user_id = Auth::user()->studentId;
+        $societies = Society::all();
+        $societyInfo = $societies->where('user_id',$user_id)->first();
+        $society_id = $societyInfo->id;
+
+
+        $newForum = new ForumPost();
+        $newForum->title=$request->input('title');
+        $newForum->club_id=$society_id;
+
+        if($request->hasfile('image')){
+            $file=$request->file('image');
+            $extension = $file ->getClientOriginalExtension();//getting image extension
+            $filename = time().".".$extension;
+            $file->move('uploads/forumImage/',$filename);
+            $newForum->image=$filename;
+        } else {
+            return $request;
+            $hightlights->image='';
+        }
+
+        $newForum->save();
+
+        $forums = ForumPost::where('club_id','=',$society_id);
+        return redirect('/society_forum_list');
     }
 
     /**
@@ -113,5 +143,10 @@ class ForumPostController extends Controller
         $forums = ForumPost::where('club_id','=',$societyId)->get();
 
         return view('societyForumList')->with('forums',$forums);
+    }
+
+    public function updateForumForm($id){
+        $forum = ForumPost::find($id);
+        return view('updateForumForm')->with('forum',$forum);
     }
 }

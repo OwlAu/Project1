@@ -31,6 +31,9 @@ class SocietyController extends Controller
         $societyProfile->user_id=$request->input('user_id');
         $societyProfile->societyAvailability=$request->input('societyAvailability');
         $societyProfile->societyFees=$request->input('societyFees');
+        $societyProfile->bank = $request->input('bank');
+        $societyProfile->bankNumber = $request->input('bankNumber');
+
 
         if($request->hasfile('logo')){
             $file=$request->file('logo');
@@ -76,6 +79,8 @@ class SocietyController extends Controller
         $societyProfile->societyAvailability = $request->input('societyAvailability');
         $societyProfile->societyFees = $request->input('societyFees');
         $societyProfile->user_id = $request->input('user_id');
+        $societyProfile->bank = $request->input('bank');
+        $societyProfile->bankNumber = $request->input('bankNumber');
 
         if($request->hasfile('logo')){
             $file=$request->file('logo');

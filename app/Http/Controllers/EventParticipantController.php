@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Society;
 use App\Models\Event;
 use App\Models\EventParticipant;
+use App\Models\EventFeedback;
+use App\Models\EventView;
 use Auth;
 use DB;
 
@@ -15,9 +18,33 @@ class EventParticipantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function displayParticipants($id)
     {
-        //
+        $userId = Auth::user()->studentId;
+        $club_id = Society::where('user_id',$userId)->first()->id;
+        
+        $participantsInfo = EventParticipant::where('event_id',$id)->get();
+        $eventInfo = Event::where('club_id',$club_id)->first();
+
+        $feedbacks = EventFeedback::where('event_id',$id)->get();
+        $views = EventView::where('event_id',$id)->get();
+        $participants = EventParticipant::where('event_id',$id)->get();
+        $eventInfo = Event::find($id);
+
+        //Get the converstion rate
+        $eventViews = EventView::where('event_id',$id)->get()->count();
+        $eventParticipantsCount = EventParticipant::where('event_id',$id)->get()->count();
+        $eventParticipants = EventParticipant::where('event_id',$id)->get();
+        $conversionRate = $eventParticipantsCount/$eventViews;
+        
+
+        return view('eventParticipant')
+        ->with('feedbacks',$feedbacks)
+        ->with('eventViews',$eventViews)
+        ->with('eventParticipants',$eventParticipants)
+        ->with('eventParticipantsCount',$eventParticipantsCount)
+        ->with('eventInfo',$eventInfo)
+        ->with('conversionRate',$conversionRate);
     }
 
     /**
@@ -82,9 +109,13 @@ class EventParticipantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function acceptRegistration($eventId, $eventParticipantId)
     {
-        //
+        $eventParticipant = EventParticipant::find($eventParticipantId);
+        $eventParticipant->status = 'enrolled';
+        $eventParticipant->save();
+
+        return redirect('/home');
     }
 
     /**

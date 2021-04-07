@@ -71,11 +71,13 @@ class EventFeedbackController extends Controller
         //Get the converstion rate
         $eventViews = EventView::where('event_id',$id)->get()->count();
         $eventParticipants = EventParticipant::where('event_id',$id)->get()->count();
+        $eventParticipant = EventParticipant::where('event_id',$id)->get();
         $conversionRate = $eventParticipants/$eventViews;
         
         return view('viewEventFeedbackDetail')
         ->with('feedbacks',$feedbacks)
         ->with('eventViews',$eventViews)
+        ->with('eventParticipant',$eventParticipant)
         ->with('eventParticipants',$eventParticipants)
         ->with('eventInfo',$eventInfo)
         ->with('conversionRate',$conversionRate);
@@ -103,5 +105,26 @@ class EventFeedbackController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function displayFeedbacks($id){
+        $feedbacks = EventFeedback::where('event_id',$id)->get();
+        $views = EventView::where('event_id',$id)->get();
+        $participants = EventParticipant::where('event_id',$id)->get();
+        $eventInfo = Event::find($id);
+
+        //Get the converstion rate
+        $eventViews = EventView::where('event_id',$id)->get()->count();
+        $eventParticipantsCount = EventParticipant::where('event_id',$id)->get()->count();
+        $eventParticipant = EventParticipant::where('event_id',$id)->get();
+        $conversionRate = $eventParticipantsCount/$eventViews;
+        
+        return view('eventFeedback')
+        ->with('feedbacks',$feedbacks)
+        ->with('eventViews',$eventViews)
+        ->with('eventParticipant',$eventParticipant)
+        ->with('eventParticipantsCount',$eventParticipantsCount)
+        ->with('eventInfo',$eventInfo)
+        ->with('conversionRate',$conversionRate);
     }
 }

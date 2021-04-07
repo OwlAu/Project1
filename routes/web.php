@@ -113,13 +113,18 @@ Route::get('/create_society_forum',[ForumPostController::class,'createForumForm'
 Route::get('/society_forum_list',[ForumPostController::class,'societyForumList']);
 Route::post('/create_society_forum',[ForumPostController::class,'store']);
 Route::post('/society/{id}/memories',[ForumPostController::class,'index']);
+Route::get('/update_forum/{id}',[ForumPostController::class,'updateForumForm']);
 Route::put('/update_forum/{id}',[ForumPostController::class,'update']);
 Route::get('/delete_forum/{id}',[ForumPostController::class,'destroy']);
 
 //Society's feedback
 Route::post('/create_feedback',[EventFeedbackController::class,'store']);
+//This is the page where we first click in
 Route::get('/event_feedback',[EventFeedbackController::class,'index']);
 Route::get('/event_feedback/{id}',[EventFeedbackController::class,'show']);
+Route::get('/event_feedback/{id}/participants',[EventParticipantController::class,'displayParticipants']);
+Route::get('/event_feedback/{eventId}/participants/{eventParticipantId}/accept_registration',[EventParticipantController::class,'acceptRegistration']);
+Route::get('/event_feedback/{id}/feedbacks',[EventFeedbackController::class,'displayFeedbacks']);
 
 Auth::routes();
 

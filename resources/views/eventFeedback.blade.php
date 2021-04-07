@@ -1,6 +1,13 @@
 @extends('layouts.app')
+@php
+use App\Models\User;
+@endphp
 @section('content')
 
+<head>
+    <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="{{asset('js/lightbox-plus-jquery.js')}}"></script>
+</head>
 <main class="content-wrapper">
     <div class="container">
         <h3>{{$eventInfo->title}}</h3>
@@ -79,11 +86,27 @@
         </div>
         {{-- END Event Analysis Header --}}
 
-
-
-
+        {{-- START Event Participants Table --}}
+        <h3 style='margin-top:30px;'>Event Feedbacks</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Feedback</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($feedbacks as $feedback)
+                <tr>
+                    <th scope="row">{{$feedback->id}}</th>
+                    <td>{{User::where('studentId',$feedback->user_id)->first()->name}}</td>
+                    <td>{{$feedback->feedback}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        {{-- END Event Participants Table --}}
     </div>
 </main>
-
-
 @endsection

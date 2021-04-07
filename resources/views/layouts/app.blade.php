@@ -165,7 +165,7 @@
                                     Member Growth
                                 </a>
                                 <a class="dropdown-item" href='/event_feedback'>
-                                    Event Feedback
+                                    Event Analysis
                                 </a>
                             </div>
                         </li>
