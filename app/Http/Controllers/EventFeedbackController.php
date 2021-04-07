@@ -70,15 +70,15 @@ class EventFeedbackController extends Controller
 
         //Get the converstion rate
         $eventViews = EventView::where('event_id',$id)->get()->count();
-        $eventParticipants = EventParticipant::where('event_id',$id)->get()->count();
+        $eventParticipantsCount = EventParticipant::where('event_id',$id)->get()->count();
         $eventParticipant = EventParticipant::where('event_id',$id)->get();
-        $conversionRate = $eventParticipants/$eventViews;
+        $conversionRate = $eventParticipantsCount/$eventViews;
         
         return view('viewEventFeedbackDetail')
         ->with('feedbacks',$feedbacks)
         ->with('eventViews',$eventViews)
         ->with('eventParticipant',$eventParticipant)
-        ->with('eventParticipants',$eventParticipants)
+        ->with('eventParticipantsCount',$eventParticipantsCount)
         ->with('eventInfo',$eventInfo)
         ->with('conversionRate',$conversionRate);
 
